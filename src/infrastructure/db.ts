@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const MONGODB_URL = process.env.MONGODB_URL;
-    if (!MONGODB_URL) {
+    const MongoDB_URI = process.env.MongoDB_URI;
+    if (!MongoDB_URI) {
       throw new Error("MONGODB_URL is not set");
     }
 
-    await mongoose.connect(MONGODB_URL);
+    await mongoose.connect(MongoDB_URI);
     console.log("Connected to the database...");
   } catch (error) {
     console.log("Error connecting to the database...");

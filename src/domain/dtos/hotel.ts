@@ -6,6 +6,6 @@ export const CreateHotelDTO = z.object({
     name: z.string(),
     location: z.string(),
     image: z.string(),
-    price: z.string(),
+    price: z.number(),
     description: z.string()
 });

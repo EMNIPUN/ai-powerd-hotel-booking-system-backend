@@ -82,7 +82,6 @@ export const createHotel = async (
 ) => {
   try {
     const hotel = CreateHotelDTO.safeParse(req.body);
-    // Validate the request data
 
     if (!hotel.success) {
       throw new ValidationError(hotel.error.message);
@@ -93,7 +92,7 @@ export const createHotel = async (
       name: hotel.data.name,
       location: hotel.data.location,
       image: hotel.data.image,
-      price: parseInt(hotel.data.price),
+      price: hotel.data.price,
       description: hotel.data.description,
     });
 

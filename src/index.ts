@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import connectDB from "./infrastructure/db";
-
+ 
 import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import bookingsRouter from "./api/booking";

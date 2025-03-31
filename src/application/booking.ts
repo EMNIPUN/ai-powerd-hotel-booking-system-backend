@@ -13,6 +13,7 @@ export const createBooking = async (
   try {
     const booking = CreateBookingDTO.safeParse(req.body);
     console.log(booking);
+
     // Validate the request data
     if (!booking.success) {
       throw new ValidationError(booking.error.message)
@@ -26,7 +27,6 @@ export const createBooking = async (
       userId: user.userId,
       checkIn: booking.data.checkIn,
       checkOut: booking.data.checkOut,
-      roomNumber: booking.data.roomNumber,
     });
 
     // Return the response
@@ -47,7 +47,7 @@ export const getAllBookingsForHotel = async (
     const bookings = await Booking.find({ hotelId: hotelId });
     const bookingsWithUser = await Promise.all(bookings.map(async (el) => {
       const user = await clerkClient.users.getUser(el.userId);
-      return { _id: el._id, hotelId: el.hotelId, checkIn: el.checkIn, checkOut: el.checkOut, roomNumber: el.roomNumber, user: { id: user.id, firstName: user.firstName, lastName: user.lastName } }
+      return { _id: el._id, hotelId: el.hotelId, checkIn: el.checkIn, checkOut: el.checkOut, user: { id: user.id, firstName: user.firstName, lastName: user.lastName } }
     }))
 
     res.status(200).json(bookingsWithUser);

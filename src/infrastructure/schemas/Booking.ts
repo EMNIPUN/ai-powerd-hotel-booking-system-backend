@@ -18,10 +18,6 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  roomNumber: {
-    type: Number,
-    required: true,
-  },
 });
 
 const Booking = mongoose.model("Booking", bookingSchema);

@@ -38,7 +38,7 @@ export const createEmbeddings = async (
     res.status(200).json({
       message: "Embeddings created successfully",
     });
-  } catch (error) {
+  } catch (error) { 
     next(error);
   }
 };

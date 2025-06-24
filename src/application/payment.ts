@@ -4,8 +4,8 @@ import Booking from "../infrastructure/schemas/Booking";
 import stripe from "../infrastructure/stripe";
 import Hotel from "../infrastructure/schemas/Hotel";
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
-const FRONTEND_URL = process.env.FRONTEND_URL as string;
+const endpointSecret = process.env.STRIPE_SECRET_KEY as string;
+const FRONTEND_URL = process.env.CORS_ORIGIN as string;
 
 async function fulfillCheckout(sessionId: string) {
   // Set your secret key. Remember to switch to your live secret key in production.

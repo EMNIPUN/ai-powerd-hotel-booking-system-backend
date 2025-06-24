@@ -29,7 +29,7 @@ const hotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-    stripePriceId: {
+  stripePriceId: {
     type: String,
     required: true,
   },

@@ -22,7 +22,7 @@ export const createEmbeddings = async (
 
     const hotels = await Hotel.find({});
 
-    const docs = hotels.map((hotel) => {
+    const docs = hotels.map((hotel) => { 
       const { _id, location, price, description } = hotel;
       const doc = new Document({
         pageContent: `${description} Located in ${location}. Price per night: ${price}`,

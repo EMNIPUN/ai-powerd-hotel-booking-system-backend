@@ -14,19 +14,37 @@ export const createBooking = async (
     const booking = CreateBookingDTO.safeParse(req.body);
     console.log(booking);
 
-    // Validate the request data
     if (!booking.success) {
-      throw new ValidationError(booking.error.message)
+      throw new ValidationError(booking.error.message);
     }
 
     const user = req.auth;
 
-    // Add the booking
+
     await Booking.create({
       hotelId: booking.data.hotelId,
       userId: user.userId,
       checkIn: booking.data.checkIn,
       checkOut: booking.data.checkOut,
+      roomNumber: await (async () => {
+        let roomNumber;
+        let isRoomAvailable = false;
+        while (!isRoomAvailable) {
+          roomNumber = Math.floor(Math.random() * 1000) + 1;
+          const existingBooking = await Booking.findOne({
+            hotelId: booking.data.hotelId,
+            roomNumber: roomNumber,
+            $or: [
+              {
+                checkIn: { $lte: booking.data.checkOut },
+                checkOut: { $gte: booking.data.checkIn },
+              },
+            ],
+          });
+          isRoomAvailable = !existingBooking;
+        }
+        return roomNumber;
+      })(),
     });
 
     // Return the response

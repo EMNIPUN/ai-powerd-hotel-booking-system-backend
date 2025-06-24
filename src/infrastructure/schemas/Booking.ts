@@ -18,6 +18,20 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  roomNumber: {
+    type: String,
+    required: true,
+  },
+  paymentStatus: {
+    type: String,
+    enum: ["PENDING", "PAID"],
+    default: "PENDING",
+  },
+  paymentMethod: {
+    type: String,
+    enum: ["CARD", "BANK_TRANSFER"],
+    default: "CARD",
+  },
 });
 
 const Booking = mongoose.model("Booking", bookingSchema);

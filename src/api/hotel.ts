@@ -13,7 +13,7 @@ import { createEmbeddings } from "../application/embedding";
 import { retrieve } from "../application/retrieve";
 const hotelsRouter = express.Router();
 
-hotelsRouter.route("/").get(getAllHotels).post(createHotel);
+hotelsRouter.route("/").get(getAllHotels).post(isAuthenticated, isAdmin, createHotel);
 hotelsRouter
   .route("/:id")
   .get(getHotelById)

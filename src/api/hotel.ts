@@ -17,8 +17,8 @@ hotelsRouter.route("/").get(getAllHotels).post(isAuthenticated, isAdmin, createH
 hotelsRouter
   .route("/:id")
   .get(getHotelById)
-  .put(updateHotel)
-  .delete(deleteHotel);
+  .put(isAuthenticated, isAdmin, updateHotel)
+  .delete(isAuthenticated, isAdmin,deleteHotel);
 hotelsRouter.route("/embeddings/create").post(createEmbeddings);
 hotelsRouter.route("/search/retrieve").get(retrieve);
 
